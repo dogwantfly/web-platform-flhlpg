@@ -1,21 +1,39 @@
 // 請把解題函式寫在這個裡面
-function solve(arr) {
-  arr.forEach(item => {
-    let newArr = arr.filter(item => (item.id = item));
-    // let valueArr = Object.keys(new)
-    newArr.forEach(item => {
-      valueArr.push(item.value);
+function solve(array) {
+  let idArr = [];
+  array.forEach(item => {
+    if (idArr.indexOf(item.id) === -1) {
+      idArr.push(item.id);
+    }
+  });
+  let newResultArr = [];
+  let newArr;
+  array.forEach(item => {
+    idArr.forEach(item => {
+      let valueArr = [];
+      let id = item;
+      if (newResultArr.filter(item => item.id === id).length) return;
+      newArr = array.filter(item => item.id == id);
+      newArr.forEach(item => {
+        valueArr.push(item.value);
+      });
+      let newResult;
+      if (valueArr.length === 1) {
+        newResult = {
+          id,
+          value: valueArr[0]
+        };
+      } else {
+        newResult = {
+          id,
+          value: valueArr
+        };
+      }
+      newResultArr.push(newResult);
     });
-    // let resultIdArr = [id: item]
   });
-
-  console.log(newArr);
-  let valueArr;
-  newArr.forEach(item => {
-    valueArr.push(item.value);
-  });
-
-  return [{ id: 1, value: valueArr }];
+  console.log(newResultArr);
+  return newResultArr;
 }
 
 // 事先為你準備好的測驗正確性的函式，如果你很確定不會改壞的話，可以改動
@@ -54,38 +72,39 @@ let arr1 = [
   { id: 3, value: 199 }
 ];
 
-
 function solve1(array) {
-  console.log(typeof array);
   let idArr = [];
   array.forEach(item => {
-    if(idArr.indexOf(item.id) === -1) {
+    if (idArr.indexOf(item.id) === -1) {
       idArr.push(item.id);
     }
-  })
-  console.log(idArr)
-  array.forEach(item => {
-    idArr.forEach( item => {
-      let id = item
-      let newArr = array.filter(item => item.id == id);
-      console.log(newArr);
-    })
+  });
+  let newResultArr = [];
+  let newArr;
 
-    let valueArr = [];
-    newArr.forEach(item => {
-      valueArr.push(item.value);
+  array.forEach(item => {
+    idArr.forEach(item => {
+      let valueArr = [];
+      let id = item;
+      if (newResultArr.filter(item => item.id === id).length) return;
+      newArr = array.filter(item => item.id == id);
+      console.log(newArr);
+      newArr.forEach(item => {
+        valueArr.push(item.value);
+      });
+      console.log(valueArr);
+      let newResult = {
+        id,
+        value: valueArr
+      };
+      newResultArr.push(newResult);
     });
-    let newResultArr = [];
-    let newResult = {
-      id: 1,
-      value: valueArr
-    };
-    console.log(newResult)
-  })
- 
-  // return [{ id: 1, value: valueArr }];
+  });
+  console.log(newResultArr);
+
+  return newResultArr;
 }
-solve1(arr1);
+// solve1(arr1);
 // 篩選出相同 id 的物件
 // 再將所有 value 取出放到 valueArr
 // 將該 id 的 value 值改為 valueArr
