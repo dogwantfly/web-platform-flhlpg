@@ -8,29 +8,26 @@ function solve(array) {
   });
   let newResultArr = [];
   let newArr;
-  array.forEach(item => {
-    idArr.forEach(item => {
-      let valueArr = [];
-      let id = item;
-      if (newResultArr.filter(item => item.id === id).length) return;
-      newArr = array.filter(item => item.id == id);
-      newArr.forEach(item => {
-        valueArr.push(item.value);
-      });
-      let newResult;
-      if (valueArr.length === 1) {
-        newResult = {
-          id,
-          value: valueArr[0]
-        };
-      } else {
-        newResult = {
-          id,
-          value: valueArr
-        };
-      }
-      newResultArr.push(newResult);
+  idArr.forEach(item => {
+    let valueArr = [];
+    let id = item;
+    newArr = array.filter(item => item.id == id);
+    newArr.forEach(item => {
+      valueArr.push(item.value);
     });
+    let newResult;
+    if (valueArr.length === 1) {
+      newResult = {
+        id,
+        value: valueArr[0]
+      };
+    } else {
+      newResult = {
+        id,
+        value: valueArr
+      };
+    }
+    newResultArr.push(newResult);
   });
   console.log(newResultArr);
   return newResultArr;
