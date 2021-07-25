@@ -29,7 +29,7 @@ function solve(array) {
     }
     newResultArr.push(newResult);
   });
-  console.log(newResultArr);
+  // console.log(newResultArr);
   return newResultArr;
 }
 
